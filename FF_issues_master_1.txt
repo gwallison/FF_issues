@@ -1,0 +1,157 @@
+# FF_issues_master_1
+# Started: Feb 8, 2024
+# The two kinds of issues docunented here are disclosure-based ("d_x" flag_id) and record-based ("r_x" flag_id).  
+# The code to detect them is in either the Disclosure_Issues or the Record_Issues classes, which are run by the 
+# Flag_issues class.  Some of these issues are detected earlier by other build code; the FF_issues flag is generated
+# by examining alrady created flags (e.g. dup_rec or has_TBWV)
+#
+# Each issue should be assigned a warning_level that is used classify how much attention
+# users should give to the issue:
+#   info: issues found but are taken care of by Open-FF
+#  watch: issues that may be important to users under some circumstances
+#  alert: issues that require user judgement, such as outliers, likely data mistakes, or other data flaws that could influence conclusions.
+
+# Template
+::START:
+::Flag_id:
+::Date_entered: 
+::Description: 
+::Notes:
+::Reported_to_FF:
+::Other_notifications:
+::Tags: 
+::Warning_level:info watch alert
+::END::
+
+# No base water volume
+::START:
+::Flag_id: d_001
+::Date_entered: 2024/2/8
+::Description: Missing or zero TotalBaseWaterVolume in disclosure.  Masses cannot be calculated.
+::Notes:
+::Reported_to_FF:
+::Other_notifications:
+::Tags: 
+::Warning_level: watch
+::END::
+
+# Duplicate disclosures
+::START:
+::Flag_id: d_002
+::Date_entered: 2024/2/8
+::Description: This flag indicates that this disclosure has a duplicate in FracFocus; that is, has the same APINumber and JobEndDate. Currently, there is no way to detect which is the correct disclosure, so all duplicates are removed in the standard filter.
+::Notes: 
+::Reported_to_FF:
+::Other_notifications:
+::Tags: 
+::Warning_level:watch 
+::END::
+
+# dup_rec
+::START:
+::Flag_id:r_001	
+::Date_entered: 2024/2/8
+::Description: This flag indicates that a record is a redundant duplicate of another in the same disclosure. These should be removed with the in_std_filtered flag.
+::Notes: As of Jan 2024, these detected duplicates add a median mass of over 60,000 lbs to about 17,000 disclosures.  Changes in the FracFocus data structure with FFV4 have made it more difficult to detect these duplicates, especially in the pre-FFV4 data.  Open-FF's current work-around is to use a translation table of DisclosureId to UploadKey to tag the disclosures that were previously found to have dup_recs; it is not clear if that was 100% successful.  Responses from FracFocus about this issue pointed the finger at the companies (about 500 of them) as responsible for this problem.  
+::Reported_to_FF:Once in 2019 (blogged about it) and once in Dec 2023.
+::Other_notifications:
+::Tags: 
+::Warning_level: info
+::END::
+
+# MI_inconsistency
+::START:
+::Flag_id:d_003
+::Date_entered: 2024/2/8
+::Description: The MassIngredient data do not pass the internal consistency test, so are NOT used when reporting mass.
+::Notes:It seems that many times when MassIncredient is internally inconsistent, it is either because one record in the disclosure has been changed (and the others are not adjusted) or small values are reported coarsely and therefore easily out of tolerance.
+::Reported_to_FF:
+::Other_notifications:
+::Tags: 
+::Warning_level:info 
+::END::
+
+# Missing or zero PercentHFJob
+::START:
+::Flag_id: r_002
+::Date_entered: 2024/2/8
+::Description: PercentHFJob is 0 or not reported; mass cannot be calculated. 
+::Notes:This is essentially a hidden mass. Clearly, if a chemical is reported, in reality has mass a non-zero mass.  Although it seems common in early years of FracFocus that records with very small mass values recorded zero instead of the small number, there are plenty of other disclosures that use zero or no value even if the quantity is large. The nature of the disclosures prevents us from knowing which is the case.
+::Reported_to_FF:
+::Other_notifications:
+::Tags: 
+::Warning_level:watch
+::END::
+
+# WaterSource doesn't sum to 100%
+::START:
+::Flag_id: d_004
+::Date_entered: 2024/2/8
+::Description: The water source percentages reported don't total 100%
+::Notes: This new (as of Dec 2023) data appears to be misunderstood by some operators.  Some are just re-reporting the PercentHFJob datum for the carrier in the water_source data - and some are even not reporting the water in the main section at all.  
+::Reported_to_FF:
+::Other_notifications:
+::Tags: 
+::Warning_level: alert
+::END::
+
+# Template
+::START:
+::Flag_id:
+::Date_entered: 
+::Description: 
+::Notes:
+::Reported_to_FF:
+::Other_notifications:
+::Tags: 
+::Warning_level:info watch alert
+::END::
+
+# Template
+::START:
+::Flag_id:
+::Date_entered: 
+::Description: 
+::Notes:
+::Reported_to_FF:
+::Other_notifications:
+::Tags: 
+::Warning_level:info watch alert
+::END::
+
+# Template
+::START:
+::Flag_id:
+::Date_entered: 
+::Description: 
+::Notes:
+::Reported_to_FF:
+::Other_notifications:
+::Tags: 
+::Warning_level:info watch alert
+::END::
+
+# Template
+::START:
+::Flag_id:
+::Date_entered: 
+::Description: 
+::Notes:
+::Reported_to_FF:
+::Other_notifications:
+::Tags: 
+::Warning_level:info watch alert
+::END::
+
+# Template
+::START:
+::Flag_id:
+::Date_entered: 
+::Description: 
+::Notes:
+::Reported_to_FF:
+::Other_notifications:
+::Tags: 
+::Warning_level:info watch alert
+::END::
+

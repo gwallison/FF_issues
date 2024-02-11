@@ -1,0 +1,16 @@
+*.zip
+*.pyc
+.ipynb_checkpoints/
+test_fixture/
+sandbox/
+out/
+old/
+data/
+tmp/
+*.html
+*.pkl
+*.parquet
+*.xls*
+__pycache__/
+ext/
+*.pytest_cache/

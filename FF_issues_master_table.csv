@@ -1,0 +1,10 @@
+issueID,date_entered,description,reported_to_FF,Other_notifications,Notes,level,tags,Open-FF_flag,Code_to_detect
+i00001,01/18/24,Likely duplicate records in many disclosures. Seems associated with a certain type of data entry.,"Yes, twice. 2019 and 2023.",Blogged about it in 2019.,These records are removed in std_filtered. Harder to detect since FFV4 was implemented. ,record,,field: dup_rec = True,in builder
+i00002,01/18/24,TotalBaseWaterVolume is empty or is zero.,,I mention this often as a problem,"Without TBWV, mass cannot be calculated",disclosure,,field: has_TBWV = False,in builder
+,,MassIngredient inconsistency,,,,,,,
+,,PercentHFJob is missing or zero,,,,,,,
+,,Chlorine dioxide at very high PercentHFJob values,,,,,,,
+,,Reported water source percentage does not sum to 100%,,,"Most issues are in the 80-95% range.  At least one has a total value of '""1""",,,,
+,,Reported water is in conflict with carrier records in the chemical disclosure,,,,,,,
+,,Obvious lat/lon problems,,,,,,,
+,,Disclosure is duplicated,,,,,,,
