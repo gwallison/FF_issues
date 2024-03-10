@@ -11,6 +11,14 @@
 #  watch: issues that may be important to users under some circumstances
 #  alert: issues that require user judgement, such as outliers, likely data mistakes, or other data flaws that could influence conclusions.
 
+#  Tags:
+#    These are used to help group like issues together. An issue can have more than one (separate with space only)
+#    Current set:
+#      - chem_id
+#      - carrier_issues
+#      - duplication
+#      - mass_issues
+#      - 
 # to add:
 #  - disclosures with a single record, often sand or water or chl dioxide.  Clearly not complete
 #  - disclosures where sand is 90%+ - water is not included
