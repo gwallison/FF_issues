@@ -1,3 +1,10 @@
+"""This code is used to detect specific issues in the Open-FF generated "full_df.parquet" file.  For each issue,
+a fuction is written to produce a flag when certain conditions are met. Those flags are then used to create
+a database that lists all the disclosures/records that are involved.  This database is specific to a particular
+full_df file and therefore a specific bulk data download and its date.  Because of the fluid nature of FracFocus
+entries (and the fact that they can be modified without public notice), specific instances of issues may be corrected
+after these flags were created."""
+
 import pandas as pd
 import numpy as np
 import os
@@ -32,7 +39,7 @@ class Disclosure_Issues():
 
     def dIssue_004(self):
         """ The reported water source percentages do not sum to 100%"""
-        cond = ~(self.gb.ws_perc_total==100)
+        cond = (self.gb.ws_perc_total.notna()) & ~(self.gb.ws_perc_total==100)
         return self.get_disc_set(cond)
 
 class Record_Issues():
