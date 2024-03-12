@@ -13,7 +13,8 @@ class Disclosure_Issues():
     def __init__(self,df):
         self.df = df
         self.gb = df.groupby('DisclosureId',as_index=False)[['APINumber','TotalBaseWaterVolume','has_TBWV',
-                                                             'is_duplicate','MI_inconsistent','ws_perc_total']].first()
+                                                             'is_duplicate','MI_inconsistent','ws_perc_total',
+                                                             'no_chem_recs']].first()
 
     # ALL Issues must be named "dIssues_x"  where x is usually a consecutive number.
     # x will become the flag's name as in "d_x"
@@ -42,9 +43,23 @@ class Disclosure_Issues():
         cond = (self.gb.ws_perc_total.notna()) & ~(self.gb.ws_perc_total==100)
         return self.get_disc_set(cond)
 
+    def dIssue_005(self):
+        """ Early FracFocus disclosures have no chemical records"""
+        cond = self.gb.no_chem_recs
+        return self.get_disc_set(cond)
+
+    def dIssue_006(self):
+        """ Disclosure records only a single chemical record"""
+        c = self.df.ingKeyPresent
+        gb = self.df[c].groupby('DisclosureId',as_index=False).size()
+        return gb[gb['size']==1].DisclosureId.tolist()
+
+        return self.get_disc_set(cond)
+
 class Record_Issues():
-    def __init__(self,df):
+    def __init__(self,df,cas_curated):
         self.df = df
+        self.cas_curated = cas_curated
 
     # ALL Issues must be named "rIssues_x"  where x is usually a consecutive number.
     # x will become the flag's name as in "r_x"
@@ -63,15 +78,22 @@ class Record_Issues():
         c1 = self.df.ingKeyPresent & ~(self.df.PercentHFJob>0)
         return self.get_rec_set(c1)
 
+    def rIssue_003(self):
+        """CASNumber must be corrected"""
+        caslst = self.cas_curated[self.cas_curated.categoryCAS=='corrected'].CASNumber.tolist()
+        c1 = self.df.CASNumber.isin(caslst)
+        return self.get_rec_set(c1)
+
 class Flag_issues():
     """Used to detect known data issues in the FracFocus data and generate appropriate flags to warn users.
     For each issue, a list is returned of DisclosureId (or IngredientsId) for the flags"""
 
-    def __init__(self,df,out_dir):
+    def __init__(self,df,cas_curated,out_dir):
         self.df = df
+        self.cas_curated = cas_curated
         self.out_dir = out_dir
         self.dIssues = Disclosure_Issues(df)
-        self.rIssues = Record_Issues(df)
+        self.rIssues = Record_Issues(df,cas_curated)
         self.get_disc_issues()
         self.get_rec_issues()
 
@@ -108,8 +130,8 @@ class Flag_issues():
         disissues = []
         for test in self.disc_issue_dic.keys():
             name = self.disc_issue_dic[test]
+            # print(test)
             lst = eval(test)
-            # print(lst)
             print(f'generating flags for: {name}')
             disc_set.update(lst)
             names.append(name)
@@ -141,10 +163,10 @@ class Flag_issues():
         """add field with all true flag names"""
             # now add single flag fields to each
         t = self.disc_df
-        print(len(t), t.columns)
+        # print(len(t), t.columns)
         cols = t.columns.tolist()
         cols.remove('DisclosureId')  # all the rest should be flag columns
-        print(cols)
+        # print(cols)
         t['d_flags'] = ''
         for col in cols:
             dkeys = t[t[col]].DisclosureId.tolist() # list of DId that are True

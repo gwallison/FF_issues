@@ -115,43 +115,58 @@
 ::Warning_level:watch
 ::END::
 
-# Template
+# No chemcical records
 ::START:
-::Title:
-::Flag_id:
-::Date_entered: 
-::Description: 
-::Notes:
+::Title:No chemical records in disclosure
+::Flag_id:d_005
+::Date_entered: 2024/3/11
+::Description: A laree number of disclosures in the bulk data download do not have chemical records. These are 
+primarily from 2011-2013 and from FFVersion 1.  The chemical records are available in the PDF form in the search
+section of FracFocus.  This is detected in the Open-FF data set building process.
+::Notes:There have been a few attempts to scrape these PDFs to get coherent access to the chemical
+records, including the SkyTruth work during that 2011-2013 period.  Those attempts are somewhat undermined by at least
+two factors: 1) PDFs (and other data) can be silently changed by Operators so that the data scraped may be out-of-date 
+without regular re-scraping. 2) Many of these early PDFs are quite resistant to automated scraping because they are
+often poorly formatted and inconsistent.  These are serious constraints considering there are tens of thousands of 
+these disclosures.  Nevertheless, Open-FF has access to some of the scraped versions.  If you are interested in them,
+please contact us.  
 ::Reported_to_FF:
 ::Other_notifications:
 ::Tags: 
-::Warning_level:info watch alert
+::Warning_level:info
 ::END::
 
-# Template
+# CASNumber must be corrected
 ::START:
-::Title:
-::Flag_id:
-::Date_entered: 
-::Description: 
-::Notes:
+::Title: CASNumber must be corrected
+::Flag_id:r_003
+::Date_entered: 2024/3/11
+::Description: Many CASNumbers in the FracFocus data have typos, omissions or other errors that are corrected
+by hand by Open-FF curation.  Users unfamiliar with the whole set of FracFocus chemicals would likely misinterpret
+discard these chemical records without the aid of the Open-FF corrections.
+::Notes:These might be as simple as misplacing a hyphen or putting in extra spaces, but most are some form of 
+mangling numbers in the CASNumber.  There are over 1,400 versions of these corrected values. To see what 
+changes, compare the FracFocus field 'CASNumber' with the OpenFF field 'bgCAS'. There are some instances where a raw CASNumber is
+a valid CASRN, but it is clearly erroneous (e.g., there are a few CASNumbers for DNA).  On closer examination, these 
+CASNumbers are very close typographically to another commonly used FracFocus chemical.  
 ::Reported_to_FF:
 ::Other_notifications:
 ::Tags: 
-::Warning_level:info watch alert
+::Warning_level:info
 ::END::
 
-# Template
+# Disclosure records only one chemical
 ::START:
-::Title:
-::Flag_id:
-::Date_entered: 
-::Description: 
-::Notes:
+::Title:Disclosure records only one chemical
+::Flag_id:d_006
+::Date_entered: 2024/3/11
+::Description: Disclosure records only one chemical (typically either water or sand). For many of these disclosures,
+the single chemical is not recorded as 100% of the fracking fluid.
+::Notes:This issue probably extends to disclosures with just two or three chemical records. 
 ::Reported_to_FF:
 ::Other_notifications:
 ::Tags: 
-::Warning_level:info watch alert
+::Warning_level:watch 
 ::END::
 
 # Template
