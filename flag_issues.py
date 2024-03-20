@@ -186,5 +186,7 @@ class Flag_issues():
                                     t.r_flags)
         t.to_parquet(os.path.join(self.out_dir,'record_issues.parquet'))
 
-
+    # def summarize_to_highest_level(self):
+    #     self.df['max_flaw_level'] = 0
+        
     
