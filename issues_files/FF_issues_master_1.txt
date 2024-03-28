@@ -22,6 +22,7 @@
 # to add:
 #  - disclosures with a single record, often sand or water or chl dioxide.  Clearly not complete
 #  - disclosures where sand is 90%+ - water is not included
+#  - ING_only bgCAS.  
 
 # Template
 ::START:
