@@ -57,7 +57,7 @@ class Process_Master_Files():
                     print('*** Correct before continuing. ***')
                     ok = False
                     break
-            # now move them into the buildiing dictionary
+            # now move them into the building dictionary
             if not ok:
                 break
             try:
@@ -70,8 +70,21 @@ class Process_Master_Files():
                             self.legal_fields[fname].append('')
             except:
                 pass    
-        return pd.DataFrame(self.legal_fields)            
+        self.master = pd.DataFrame(self.legal_fields)            
+        return self.master
+        
+    def get_warning_dict(self):
+        dict = {}
+        for i,row in self.master.iterrows():
+            dict[row.Flag_id] = row.Warning_level
+        return dict
 
+    def get_warning_df(self):
+        dict = {'flag':[],'warning':[]}
+        for i,row in self.master.iterrows():
+            dict['flag'].append(row.Flag_id)
+            dict['warning'].append(row.Warning_level)
+        return pd.DataFrame(dict)
  
 if __name__ == '__main__':
     pmf = Process_Master_Files()

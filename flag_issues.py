@@ -8,13 +8,15 @@ after these flags were created."""
 import pandas as pd
 import numpy as np
 import os
+import FF_issues.process_master_files as pmf
 
 class Disclosure_Issues():
     def __init__(self,df):
         self.df = df
         self.gb = df.groupby('DisclosureId',as_index=False)[['APINumber','TotalBaseWaterVolume','has_TBWV',
+                                                             'bgStateName',
                                                              'is_duplicate','MI_inconsistent','ws_perc_total',
-                                                             'no_chem_recs']].first()
+                                                             'no_chem_recs','pub_delay_days']].first()
 
     # ALL Issues must be named "dIssues_x"  where x is usually a consecutive number.
     # x will become the flag's name as in "d_x"
@@ -34,7 +36,7 @@ class Disclosure_Issues():
         return self.get_disc_set(cond)
 
     def dIssue_003(self):
-        """ The MassIngredient data do not pass the internal consistency test, so are is used when reporting mass."""
+        """ The MassIngredient data do not pass the internal consistency test, so are not used when reporting mass."""
         cond = self.gb.MI_inconsistent
         return self.get_disc_set(cond)
 
@@ -54,7 +56,66 @@ class Disclosure_Issues():
         gb = self.df[c].groupby('DisclosureId',as_index=False).size()
         return gb[gb['size']==1].DisclosureId.tolist()
 
+    def dIssue_007(self):
+        """ Chlorine dioxide percentage is over 80%"""
+        cond = (self.df.bgCAS=='10049-04-4') & (self.df.PercentHFJob>80)
+        return self.df[cond].DisclosureId.unique().tolist()
+
+    def dIssue_008(self):
+        """Percent of sand is over 50%"""
+        cond = (self.df.bgCAS=='14808-60-7') & (self.df.PercentHFJob>50)
+        return self.df[cond].DisclosureId.unique().tolist()
+
+    def dIssue_009(self):
+        """Cororado pub delay > 90 day"""
+        cond = (self.gb.bgStateName=='colorado') & (self.gb.pub_delay_days>90)
         return self.get_disc_set(cond)
+
+    def dIssue_010(self):
+        """Ohio pub delay > 80 day"""
+        cond = (self.gb.bgStateName=='ohio') & (self.gb.pub_delay_days>80)
+        return self.get_disc_set(cond)
+
+    def dIssue_011(self):
+        """Texas pub delay > 45 days"""
+        cond = (self.gb.bgStateName=='texas') & (self.gb.pub_delay_days>45)
+        return self.get_disc_set(cond)
+
+    def dIssue_012(self):
+        """Pennsylvania pub delay > 80 days"""
+        cond = (self.gb.bgStateName=='pennsylvania') & (self.gb.pub_delay_days>80)
+        return self.get_disc_set(cond)
+
+    def dIssue_013(self):
+        """New Mexico pub delay > 60 days"""
+        cond = (self.gb.bgStateName=='new mexico') & (self.gb.pub_delay_days>60)
+        return self.get_disc_set(cond)
+
+    def dIssue_014(self):
+        """Oklahoma pub delay > 80 days"""
+        cond = (self.gb.bgStateName=='oklahoma') & (self.gb.pub_delay_days>80)
+        return self.get_disc_set(cond)
+
+    def dIssue_015(self):
+        """North Dakota pub delay > 80 days"""
+        cond = (self.gb.bgStateName=='north dakota') & (self.gb.pub_delay_days>80)
+        return self.get_disc_set(cond)
+
+    def dIssue_016(self):
+        """Wyoming pub delay > 45 days"""
+        cond = (self.gb.bgStateName=='wyoming') & (self.gb.pub_delay_days>45)
+        return self.get_disc_set(cond)
+
+    def dIssue_017(self):
+        """Utah pub delay > 80 days"""
+        cond = (self.gb.bgStateName=='utah') & (self.gb.pub_delay_days>80)
+        return self.get_disc_set(cond)
+
+    def dIssue_018(self):
+        """West Virginia pub delay > 120 days"""
+        cond = (self.gb.bgStateName=='west virginia') & (self.gb.pub_delay_days>120)
+        return self.get_disc_set(cond)
+
 
 class Record_Issues():
     def __init__(self,df,cas_curated):
@@ -79,7 +140,7 @@ class Record_Issues():
         return self.get_rec_set(c1)
 
     def rIssue_003(self):
-        """CASNumber must be corrected"""
+        """CASNumber must be corrected; minor cleaning is not counted"""
         caslst = self.cas_curated[self.cas_curated.categoryCAS=='corrected'].CASNumber.tolist()
         c1 = self.df.CASNumber.isin(caslst)
         return self.get_rec_set(c1)
@@ -96,7 +157,10 @@ class Flag_issues():
         self.rIssues = Record_Issues(df,cas_curated)
         self.get_disc_issues()
         self.get_rec_issues()
-
+        pobj = pmf.Process_Master_Files()
+        self.masterdf = pobj.process_obj()
+        self.warnings = pobj.get_warning_dict()
+        
     def get_disc_issues(self):
         self.disc_issue_dic = {}
         for item in dir(self.dIssues):
@@ -123,6 +187,24 @@ class Flag_issues():
         self.rec_df = pd.DataFrame({'reckey':list(reckey_set)})
         for issue in rec_issues:
             self.rec_df[issue[1]] = self.rec_df.reckey.isin(issue[0])
+
+    def get_max_warning_as_df(self,lst):
+        level_dict = {'alert': (3,'alert'), 
+                      'watch': (2,'watch'),
+                      'info': (1,'info'),
+                      '': ('',0)}
+        max_level = []
+        for combination in lst:
+            # print(combination)
+            flags = combination.strip().split(' ')
+            levels = []
+            for flag in flags:
+                warning = self.warnings[flag]
+                levels.append(level_dict[warning])
+            max_level.append(max(levels)[1])
+        out = pd.DataFrame({'flag_combo':lst,'max_level':max_level})            
+        # print(out)
+        return out
 
     def detect_all_issues(self):
         disc_set = set()
@@ -160,7 +242,8 @@ class Flag_issues():
         self.make_rec_flag_df(rec_set,recissues)
 
     def add_summary_fields(self):
-        """add field with all true flag names"""
+        """add field with all true flag names and for each flag, update a "warning" summary
+        field"""
             # now add single flag fields to each
         t = self.disc_df
         # print(len(t), t.columns)
@@ -168,6 +251,7 @@ class Flag_issues():
         cols.remove('DisclosureId')  # all the rest should be flag columns
         # print(cols)
         t['d_flags'] = ''
+        # t['d_warnings'] = 'info'
         for col in cols:
             dkeys = t[t[col]].DisclosureId.tolist() # list of DId that are True
             t.d_flags = np.where(t.DisclosureId.isin(dkeys),
@@ -186,7 +270,5 @@ class Flag_issues():
                                     t.r_flags)
         t.to_parquet(os.path.join(self.out_dir,'record_issues.parquet'))
 
-    # def summarize_to_highest_level(self):
-    #     self.df['max_flaw_level'] = 0
         
     
