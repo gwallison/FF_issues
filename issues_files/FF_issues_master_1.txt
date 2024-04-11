@@ -204,7 +204,10 @@ the single chemical is not recorded as 100% of the fracking fluid.
 ::Description: Colorado states: "Within 60 days following the conclusion of a Hydraulic Fracturing
 Treatment and in no case later than 120 days after the commencement of such Hydraulic
 Fracturing Treatment, the Operator of the Well will complete the Chemical Disclosure
-Registry form and post the form on the Chemical Disclosure Registry..."  Because Open-FF has archived downloads spaced mostly about one week apart, we set the trigger for this flag at a conservative 90 days.  Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures.
+Registry form and post the form on the Chemical Disclosure Registry..."  
+Open-FF determines the minimum disclosure publication delay by comparing when the job was reportedly ended and the last when the disclosure is detected in bulk downloads. Open-FF calculates the "pub_delay_days" as the number of days between the reported JobEndDate and the date of the latest archive in which the disclosure is still not reported.
+Because Open-FF tracks just the days between JobEndDate and publication (60 days), but the Colorado code also includes a 120 day limit between JobStartDate and publication (120 days), we take the conservative approach and only flag those disclosures with pub_delay_days > 120 days.
+Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures.
 ::Notes:Colorado code can be found in section 208 of https://largelandscapes.org/wp-content/uploads/2022/03/Colorado-Oil-Gas-Conservation-Commission-COGCC-Regulations.pdf
 ::Reported_to_FF:
 ::Other_notifications:
@@ -217,8 +220,7 @@ Registry form and post the form on the Chemical Disclosure Registry..."  Because
 ::Title:Ohio: disclosures published after deadline
 ::Flag_id:d_010
 ::Date_entered: 2024/3/30
-::Description: Because Open-FF has archived downloads spaced mostly about one week apart, we set the trigger for this flag at a conservative 80 days, even though publication deadline is 60 days.  Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. It should be noted that Ohio allows disclosure directly to the state, bypassing FracFocus.
-::Notes:Colorado code can be found in section 208 of https://largelandscapes.org/wp-content/uploads/2022/03/Colorado-Oil-Gas-Conservation-Commission-COGCC-Regulations.pdf
+::Description: Open-FF determines the minimum disclosure publication delay by comparing when the job was reportedly ended and the last when the disclosure is detected in bulk downloads. Open-FF calculates the "pub_delay_days" as the number of days between the reported JobEndDate and the date of the latest archive in which the disclosure is still not reported. It should be noted that Ohio allows disclosure directly to the state, bypassing FracFocus.
 ::Notes: Find Ohio code at: https://codes.ohio.gov/ohio-revised-code/section-1509.10
 ::Reported_to_FF:
 ::Other_notifications:
@@ -231,7 +233,8 @@ Registry form and post the form on the Chemical Disclosure Registry..."  Because
 ::Title:Texas: disclosures published after deadline
 ::Flag_id:d_011
 ::Date_entered:2024/3/30 
-::Description: In Texas, operators are required to publish to FracFocus, it appears within 30 days.  (This could be clarified better if someone could dig into the state code.)  Because Open-FF has archived downloads spaced mostly about one week apart, we set the trigger for this flag at a conservative 45 days, even though publication deadline is 30 days.  Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
+::Description: In Texas, operators are required to publish to FracFocus, it appears within 30 days.  (This could be clarified better if someone could dig into the state code.)  Open-FF determines the minimum disclosure publication delay by comparing when the job was reportedly ended and the last when the disclosure is detected in bulk downloads. Open-FF calculates the "pub_delay_days" as the number of days between the reported JobEndDate and the date of the latest archive in which the disclosure is still not reported.
+
 ::Notes:https://texreg.sos.state.tx.us/public/readtac$ext.TacPage?sl=R&app=9&p_dir=&p_rloc=&p_tloc=&p_ploc=&pg=1&p_tac=&ti=16&pt=1&ch=3&rl=29#:~:text=(2)%20Additive%2D%2DAny%20chemical,create%20fractures%20in%20a%20formation.
 ::Reported_to_FF:
 ::Other_notifications:
@@ -241,10 +244,12 @@ Registry form and post the form on the Chemical Disclosure Registry..."  Because
 
 # Pennsylvania publication delays
 ::START:
-::Title:Pennsylvania: disclosures 
+::Title:Pennsylvania: disclosure published after deadline
 ::Flag_id:d_012
 ::Date_entered: 2024/3/30
-::Description: In Pennsylvania, operators of unconventional gas wells are required to publish to FracFocus, it appears within 60 days.  Because Open-FF has archived downloads spaced mostly about one week apart, we set the trigger for this flag at a conservative 80 days, even though publication deadline is 60 days.  Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
+::Description: In Pennsylvania, operators of unconventional gas wells are required to publish to FracFocus, it appears within 60 days.  
+Open-FF determines the minimum disclosure publication delay by comparing when the job was reportedly ended and the last when the disclosure is detected in bulk downloads. Open-FF calculates the "pub_delay_days" as the number of days between the reported JobEndDate and the date of the latest archive in which the disclosure is still not reported.
+ Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
 
 ::Notes:From https://www.dep.pa.gov/Business/Energy/OilandGasPrograms/Act13/Pages/Act-13-FAQ.aspx :
 "Because the registry must be used for all hydraulic fracturing of unconventional wells performed on or after April 16, 2012, the Department expects all operators to be registered with FracFocus.org and be prepared to begin using the registry. Within 60 days of the conclusion of hydraulic fracturing, operators must complete and post the chemical registry disclosure form on the registry."
@@ -259,7 +264,8 @@ Registry form and post the form on the Chemical Disclosure Registry..."  Because
 ::Title:New Mexico: disclosure published after deadline
 ::Flag_id:d_013
 ::Date_entered: 2024/3/30
-::Description: In New Mexico, operators are required to publish to FracFocus, it appears within 45 days.  Because Open-FF has archived downloads spaced mostly about one week apart, we set the trigger for this flag at a conservative 60 days, even though publication deadline is 45 days.  Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
+::Description: In New Mexico, operators are required to publish to FracFocus, it appears within 45 days.  Open-FF determines the minimum disclosure publication delay by comparing when the job was reportedly ended and the last when the disclosure is detected in bulk downloads. Open-FF calculates the "pub_delay_days" as the number of days between the reported JobEndDate and the date of the latest archive in which the disclosure is still not reported.
+ Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
 ::Notes:https://casetext.com/regulation/new-mexico-administrative-code/title-19-natural-resources-and-wildlife/chapter-15-oil-and-gas/part-16-drilling-and-production/section-19151619-log-completion-and-workover-reports#:~:text=Completion%20report.,well%20has%20been%20hydraulically%20fractured.
 ::Reported_to_FF:
 ::Other_notifications:
@@ -272,7 +278,8 @@ Registry form and post the form on the Chemical Disclosure Registry..."  Because
 ::Title:Oklahoma: disclosure publication after deadline
 ::Flag_id:d_014
 ::Date_entered: 2024/3/31
-::Description: Because Open-FF has archived downloads spaced mostly about one week apart, we set the trigger for this flag at a conservative 80 days, even though publication deadline is 60 days.  Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
+::Description: Open-FF determines the minimum disclosure publication delay by comparing when the job was reportedly ended and the last when the disclosure is detected in bulk downloads. Open-FF calculates the "pub_delay_days" as the number of days between the reported JobEndDate and the date of the latest archive in which the disclosure is still not reported.
+ Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
 ::Notes:See https://casetext.com/regulation/oklahoma-administrative-code/title-165-corporation-commission/chapter-10-oil-and-gas-conservation/subchapter-3-drilling-developing-and-producing/part-3-completions/section-16510-3-10-effective-until1012022well-completion-operations
 ::Reported_to_FF:
 ::Other_notifications:
@@ -285,7 +292,10 @@ Registry form and post the form on the Chemical Disclosure Registry..."  Because
 ::Title:North Dakota: disclosure publication after deadline
 ::Flag_id:d_015
 ::Date_entered: 2024/3/31
-::Description: State Code: 43-02-03-27.1. Hydraulic fracture stimulation. Because Open-FF has archived downloads spaced mostly about one week apart, we set the trigger for this flag at a conservative 80 days, even though publication deadline is 60 days.  Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
+::Description: State Code: 43-02-03-27.1. Hydraulic fracture stimulation. 
+
+Open-FF determines the minimum disclosure publication delay by comparing when the job was reportedly ended and the last when the disclosure is detected in bulk downloads. Open-FF calculates the "pub_delay_days" as the number of days between the reported JobEndDate and the date of the latest archive in which the disclosure is still not reported.
+Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
 ::Notes: See https://ndlegis.gov/information/acdata/pdf/43-02-03.pdf
 ::Reported_to_FF:
 ::Other_notifications:
@@ -298,7 +308,10 @@ Registry form and post the form on the Chemical Disclosure Registry..."  Because
 ::Title:Wyoming: Possible late publication of disclosure
 ::Flag_id:d_016
 ::Date_entered: 2024/3/31
-::Description: While it appears that in Wyoming, disclosure to FracFocus isn't mandatory, completion reports are due to the state within 30 days, and they include chemical disclosure.  Therefore, the disclosures flagged here MAY be part of that completion report and therefore late.  Because Open-FF has archived downloads spaced mostly about one week apart, we set the trigger for this flag at a conservative 45 days, even though publication deadline is 30 days.  Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
+::Description: While it appears that in Wyoming, disclosure to FracFocus isn't mandatory, completion reports are due to the state within 30 days, and they include chemical disclosure.  Therefore, the disclosures flagged here MAY be part of that completion report and therefore late. 
+
+Open-FF determines the minimum disclosure publication delay by comparing when the job was reportedly ended and the last when the disclosure is detected in bulk downloads. Open-FF calculates the "pub_delay_days" as the number of days between the reported JobEndDate and the date of the latest archive in which the disclosure is still not reported.
+Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
 ::Notes:See https://rules.wyo.gov/DownloadFile.aspx?source_id=21072&source_type_id=81&doc_type_id=110&include_meta_data=Y&file_type=pdf&filename=21072.pdf&token=226065013234156006246028056104000097198077240053
 ::Reported_to_FF:
 ::Other_notifications:
@@ -312,7 +325,10 @@ Registry form and post the form on the Chemical Disclosure Registry..."  Because
 ::Flag_id:d_017
 ::Date_entered: 2024/3/31
 ::Description: "1. Chemical disclosure.
-1.1. The amount and type of chemicals used in a hydraulic fracturing operation shall be reported to www.fracfocus.org within 60 days of hydraulic fracturing completion for public disclosure." (Utah Admin. Code 649-3-39.)  Because Open-FF has archived downloads spaced mostly about one week apart, we set the trigger for this flag at a conservative 80 days, even though publication deadline is 60 days.  Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
+1.1. The amount and type of chemicals used in a hydraulic fracturing operation shall be reported to www.fracfocus.org within 60 days of hydraulic fracturing completion for public disclosure." (Utah Admin. Code 649-3-39.) 
+
+Open-FF determines the minimum disclosure publication delay by comparing when the job was reportedly ended and the last when the disclosure is detected in bulk downloads. Open-FF calculates the "pub_delay_days" as the number of days between the reported JobEndDate and the date of the latest archive in which the disclosure is still not reported.
+Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
 ::Notes:See https://casetext.com/regulation/utah-administrative-code/natural-resources/title-r649-oil-gas-and-mining-oil-and-gas/rule-r649-3-drilling-and-operating-practices/section-r649-3-39-hydraulic-fracturing
 ::Reported_to_FF:
 ::Other_notifications:
@@ -325,7 +341,10 @@ Registry form and post the form on the Chemical Disclosure Registry..."  Because
 ::Title:West Virginia: Possible late publication of disclosure
 ::Flag_id:d_018
 ::Date_entered: 2024/3/31
-::Description: While it appears that in West Virginia, disclosure to FracFocus isn't mandatory, completion reports are due to the state within 90 days, and they include chemical disclosure.  Therefore, the disclosures flagged here MAY be part of that completion report and therefore late.  Because Open-FF has archived downloads spaced mostly about one week apart, we set the trigger for this flag at a conservative 120 days, even though publication deadline is 90 days.  Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
+::Description: While it appears that in West Virginia, disclosure to FracFocus isn't mandatory, completion reports are due to the state within 90 days, and they include chemical disclosure.  Therefore, the disclosures flagged here MAY be part of that completion report and therefore late. 
+
+Open-FF determines the minimum disclosure publication delay by comparing when the job was reportedly ended and the last when the disclosure is detected in bulk downloads. Open-FF calculates the "pub_delay_days" as the number of days between the reported JobEndDate and the date of the latest archive in which the disclosure is still not reported.
+Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate publication delay for earlier disclosures. 
 ::Notes: See https://casetext.com/regulation/west-virginia-administrative-code/agency-35-oil-and-gas/title-35-legislative-rule-division-of-environmental-protection-office-of-oil-and-gas/series-35-04-oil-and-gas-wells-and-other-wells/section-35-4-12-well-records
 ::Reported_to_FF:
 ::Other_notifications:

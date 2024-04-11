@@ -67,53 +67,53 @@ class Disclosure_Issues():
         return self.df[cond].DisclosureId.unique().tolist()
 
     def dIssue_009(self):
-        """Cororado pub delay > 90 day"""
-        cond = (self.gb.bgStateName=='colorado') & (self.gb.pub_delay_days>90)
+        """Cororado pub delay > 120 day"""
+        cond = (self.gb.bgStateName=='colorado') & (self.gb.pub_delay_days>120)
         return self.get_disc_set(cond)
 
     def dIssue_010(self):
-        """Ohio pub delay > 80 day"""
-        cond = (self.gb.bgStateName=='ohio') & (self.gb.pub_delay_days>80)
+        """Ohio pub delay > 60 day"""
+        cond = (self.gb.bgStateName=='ohio') & (self.gb.pub_delay_days>60)
         return self.get_disc_set(cond)
 
     def dIssue_011(self):
-        """Texas pub delay > 45 days"""
-        cond = (self.gb.bgStateName=='texas') & (self.gb.pub_delay_days>45)
+        """Texas pub delay > 30 days"""
+        cond = (self.gb.bgStateName=='texas') & (self.gb.pub_delay_days>30)
         return self.get_disc_set(cond)
 
     def dIssue_012(self):
-        """Pennsylvania pub delay > 80 days"""
-        cond = (self.gb.bgStateName=='pennsylvania') & (self.gb.pub_delay_days>80)
+        """Pennsylvania pub delay > 60 days"""
+        cond = (self.gb.bgStateName=='pennsylvania') & (self.gb.pub_delay_days>60)
         return self.get_disc_set(cond)
 
     def dIssue_013(self):
-        """New Mexico pub delay > 60 days"""
-        cond = (self.gb.bgStateName=='new mexico') & (self.gb.pub_delay_days>60)
+        """New Mexico pub delay > 45 days"""
+        cond = (self.gb.bgStateName=='new mexico') & (self.gb.pub_delay_days>45)
         return self.get_disc_set(cond)
 
     def dIssue_014(self):
-        """Oklahoma pub delay > 80 days"""
-        cond = (self.gb.bgStateName=='oklahoma') & (self.gb.pub_delay_days>80)
+        """Oklahoma pub delay > 60 days"""
+        cond = (self.gb.bgStateName=='oklahoma') & (self.gb.pub_delay_days>60)
         return self.get_disc_set(cond)
 
     def dIssue_015(self):
-        """North Dakota pub delay > 80 days"""
-        cond = (self.gb.bgStateName=='north dakota') & (self.gb.pub_delay_days>80)
+        """North Dakota pub delay > 60 days"""
+        cond = (self.gb.bgStateName=='north dakota') & (self.gb.pub_delay_days>60)
         return self.get_disc_set(cond)
 
     def dIssue_016(self):
-        """Wyoming pub delay > 45 days"""
-        cond = (self.gb.bgStateName=='wyoming') & (self.gb.pub_delay_days>45)
+        """Wyoming pub delay > 30 days"""
+        cond = (self.gb.bgStateName=='wyoming') & (self.gb.pub_delay_days>30)
         return self.get_disc_set(cond)
 
     def dIssue_017(self):
-        """Utah pub delay > 80 days"""
-        cond = (self.gb.bgStateName=='utah') & (self.gb.pub_delay_days>80)
+        """Utah pub delay > 60 days"""
+        cond = (self.gb.bgStateName=='utah') & (self.gb.pub_delay_days>60)
         return self.get_disc_set(cond)
 
     def dIssue_018(self):
-        """West Virginia pub delay > 120 days"""
-        cond = (self.gb.bgStateName=='west virginia') & (self.gb.pub_delay_days>120)
+        """West Virginia pub delay > 90 days"""
+        cond = (self.gb.bgStateName=='west virginia') & (self.gb.pub_delay_days>90)
         return self.get_disc_set(cond)
 
 
