@@ -23,6 +23,7 @@
 #  - %proprietary > say, 75% (alert)
 #  - ING_only bgCAS.  (watch)
 #  - location errors (watch)
+#  - general watch for chlorine dioxide - often as a solution, so masses include the water mass!
 
 # Template
 ::START:
