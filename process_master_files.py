@@ -89,5 +89,7 @@ class Process_Master_Files():
 if __name__ == '__main__':
     pmf = Process_Master_Files()
     df = pmf.process_obj()
-    print(df.info())
+    # print(df.info())
     # print(pmf.legal_fields)
+    # pmf.fetch_all_obj()
+    print(df.head())

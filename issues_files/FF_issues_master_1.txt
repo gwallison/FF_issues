@@ -24,6 +24,10 @@
 #  - ING_only bgCAS.  (watch)
 #  - location errors (watch)
 #  - general watch for chlorine dioxide - often as a solution, so masses include the water mass!
+#  - misuse of TBNWV? positive number but no CO2 or N2
+#  - total % is too large (problems 3 or 4)
+#  - total % is too small (partial; problem 6)
+
 
 # Template
 ::START:
