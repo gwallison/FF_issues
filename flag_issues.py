@@ -116,6 +116,15 @@ class Disclosure_Issues():
         cond = (self.gb.bgStateName=='west virginia') & (self.gb.pub_delay_days>90)
         return self.get_disc_set(cond)
 
+    def dIssue_019(self):
+        """MassIngredient of water is not consistent with TBWV"""
+        gb1 = self.df.groupby('DisclosureId',as_index=False)['TotalBaseWaterVolume'].first()
+        gb2 = self.df[self.df.is_water_carrier].groupby('DisclosureId',as_index=False)\
+            ['MassIngredient'].sum()
+        mg = pd.merge(gb1,gb2,on='DisclosureId',how='inner')
+        mg['TBWV_mass'] = mg.TotalBaseWaterVolume * 8.34
+        mg['fracdiff'] = np.absolute(mg.MassIngredient - mg.TBWV_mass)/mg.TBWV_mass
+        return mg[mg.fracdiff>0.2].DisclosureId.unique().tolist()
 
 class Record_Issues():
     def __init__(self,df,cas_curated):
@@ -271,4 +280,24 @@ class Flag_issues():
         t.to_parquet(os.path.join(self.out_dir,'record_issues.parquet'))
 
         
+# if __name__ == "__main__":
+#     import sys
+#     sys.path.insert(0,'c:/MyDocs/integrated/') # adjust to your setup
+#     import openFF.common.text_handlers as th
+#     import openFF.common.file_handlers as fh
+#     import openFF.common.handles as hndl
+# #    import FF_issues.flag_issues as fi
+#     import numpy as np
+#     root_dir = 'sandbox'
+#     orig_dir = os.path.join(root_dir,'orig_dir')
+#     work_dir = os.path.join(root_dir,'work_dir')
+#     final_dir = os.path.join(root_dir,'final')
+#     ext_dir = os.path.join(root_dir,'ext')
     
+#     print('assembling tables of FracFocus flaws')
+#     df = fh.get_df(os.path.join(final_dir,'full_df.parquet'))
+#     cas_curated = fh.get_df(os.path.join(final_dir,'curation_files','cas_curated.parquet'))
+    
+#     obj = Flag_issues(df=df,cas_curated=cas_curated,
+#                          out_dir=final_dir)
+#     obj.detect_all_issues()

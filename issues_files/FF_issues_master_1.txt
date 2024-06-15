@@ -27,6 +27,7 @@
 #  - misuse of TBNWV? positive number but no CO2 or N2
 #  - total % is too large (problems 3 or 4)
 #  - total % is too small (partial; problem 6)
+#  - MassIngredient of water is not consistent with TBWV
 
 
 # Template
@@ -357,17 +358,17 @@ Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate p
 ::Warning_level:info
 ::END::
 
-# Template
+# MassIngredient of water is not consistent with TBWV
 ::START:
-::Title:
-::Flag_id:
-::Date_entered: 
-::Description: 
+::Title:MassIngredient of water is not consistent with TotalBaseWaterVolume
+::Flag_id:d_019
+::Date_entered: 2024/6/14
+::Description: The MassIngredient of the records that have been identified as water carrier records should be consistent with the mass of the TotalBaseWaterVolume, once converted from gallons.  This flag indicates that the two numbers are not within 20% of each other.  Possible causes of this included: big errors in PercenHFJob, misreporting of the volume, misreporting of the mass, density of the water is different from 8.34 pounds/gallon.  It suggests that other MassIngredient values are erroneous as well.
 ::Notes:
 ::Reported_to_FF:
 ::Other_notifications:
 ::Tags: 
-::Warning_level:info watch alert
+::Warning_level:alert
 ::END::
 
 # Template
