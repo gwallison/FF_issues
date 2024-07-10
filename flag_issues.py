@@ -119,7 +119,10 @@ class Disclosure_Issues():
     def dIssue_019(self):
         """MassIngredient of water is not consistent with TBWV"""
         gb1 = self.df.groupby('DisclosureId',as_index=False)['TotalBaseWaterVolume'].first()
-        gb2 = self.df[self.df.is_water_carrier].groupby('DisclosureId',as_index=False)\
+        c1 = self.df.MassIngredient.notna() # ignore records without data
+        c2 = self.df.is_water_carrier
+
+        gb2 = self.df[c1&c2].groupby('DisclosureId',as_index=False)\
             ['MassIngredient'].sum()
         mg = pd.merge(gb1,gb2,on='DisclosureId',how='inner')
         mg['TBWV_mass'] = mg.TotalBaseWaterVolume * 8.34
