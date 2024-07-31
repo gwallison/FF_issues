@@ -53,7 +53,7 @@ class WatchListManager():
         if blogpage:
             with open(os.path.join(self.dirname,'meta.txt'),'a') as f:
                 f.write(f'**BLOG_LINK: {blogpage} \n')
-        if (FF_notified | status):
+        if (FF_notified!=None) | (status!=None):
             fn = os.path.join(self.dirname,'api_df.parquet')
             t = pd.read_parquet(fn)
             if FF_notified:
@@ -75,7 +75,7 @@ class WatchListManager():
                 print(f'{item}: No dataframe registered')
         alldf = pd.concat(df_lst)
         alldf.to_parquet(os.path.join(hndl.ff_issues_dir,'watch_list_master.parquet'))
-        print('watch_list_master.parquet written')
+        print('*** watch_list_master.parquet written ***')
             
     def get_summary(self):
         dirlst = os.listdir(self.wl_dir)

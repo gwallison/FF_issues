@@ -128,6 +128,11 @@ class Disclosure_Issues():
         mg['TBWV_mass'] = mg.TotalBaseWaterVolume * 8.34
         mg['fracdiff'] = np.absolute(mg.MassIngredient - mg.TBWV_mass)/mg.TBWV_mass
         return mg[mg.fracdiff>0.2].DisclosureId.unique().tolist()
+    
+    def dIssue_020(self):
+        """TBWV is greater than 100 million gallons"""
+        cond = (self.gb.TotalBaseWaterVolume>100000000)
+        return self.get_disc_set(cond)
 
 class Record_Issues():
     def __init__(self,df,cas_curated):

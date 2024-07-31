@@ -1,0 +1,6 @@
+**FLAW_STR: d_020
+**DESCRIPTION: Four disclosures report massive water use (produced to boot).  These are in New Mexico
+and they outweigh all other FF water TBWV by over 250M gallons.  Unless they are using these
+as injection wells, these must be errors.
+
+**BLOG_LINK: https://open-ff.org/2024/07/24/occidental-oil-and-gas-massive-water-use-reported/ 
