@@ -9,7 +9,6 @@ data/
 tmp/
 *.html
 *.pkl
-*.parquet
 *.xls*
 __pycache__/
 ext/
