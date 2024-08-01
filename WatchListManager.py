@@ -70,6 +70,7 @@ class WatchListManager():
             try:
                 df = pd.read_parquet(os.path.join(self.wl_dir,item,'api_df.parquet'))
                 print(f'{item}: Num disclosures: {len(df)}')
+                df['wl_name'] = item # add name into the master
                 df_lst.append(df)
             except:
                 print(f'{item}: No dataframe registered')
