@@ -27,7 +27,7 @@
 #  - misuse of TBNWV? positive number but no CO2 or N2
 #  - total % is too large (problems 3 or 4)
 #  - total % is too small (partial; problem 6)
-#  - MassIngredient of water is not consistent with TBWV
+#  
 
 
 # Template
@@ -371,17 +371,17 @@ Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate p
 ::Warning_level:alert
 ::END::
 
-# Template
+# TotalBaseWaterVolume is greater than 100,000,000 gallons
 ::START:
-::Title:
-::Flag_id:
-::Date_entered: 
-::Description: 
-::Notes:
+::Title:TotalBaseWaterVolume is greater than 100,000,000 gallons
+::Flag_id:d_020
+::Date_entered:2024/7/31 
+::Description: In general, it seems that water uses over 100 million gallons are reporting errors.  This flag is used to catch such reports.
+::Notes:  This was introduced for the Occidental misreport in July 2024. 
 ::Reported_to_FF:
 ::Other_notifications:
 ::Tags: 
-::Warning_level:info watch alert
+::Warning_level:alert
 ::END::
 
 # Template

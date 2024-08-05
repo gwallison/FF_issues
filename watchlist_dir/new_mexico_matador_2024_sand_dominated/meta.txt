@@ -1,0 +1,6 @@
+**FLAW_STR: d_008
+**DESCRIPTION: This watchlist item focuses on the disclosures that are sand-dominated (d_008) from the company, matador,
+    in the state of New Mexico.  The code for compiling this list is in the notebook, blog_sand_water_ratio_vX.ipynb.
+    Besides the focus error of sand percentages > 50%, these disclosures often also have issues of `MassIngredient` misreports
+    and possibly `PercentageHFJob` errors.
+
