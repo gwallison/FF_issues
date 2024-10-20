@@ -14,7 +14,7 @@ class Disclosure_Issues():
     def __init__(self,df):
         self.df = df
         self.gb = df.groupby('DisclosureId',as_index=False)[['APINumber','TotalBaseWaterVolume','has_TBWV',
-                                                             'bgStateName',
+                                                             'bgStateName','loc_within_state',
                                                              'is_duplicate','MI_inconsistent','ws_perc_total',
                                                              'no_chem_recs','pub_delay_days']].first()
 
@@ -139,6 +139,11 @@ class Disclosure_Issues():
         cond = (self.gb.TVD>35050)
         return self.get_disc_set(cond)
 
+    def dIssue_022(self):
+        """The lat/lon location is not within the boundaries of the reported state"""
+        cond = (self.gb.loc_within_state==False)
+        return self.get_disc_set(cond)
+    
 class Record_Issues():
     def __init__(self,df,cas_curated):
         self.df = df

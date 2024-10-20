@@ -18,7 +18,7 @@
 #      - carrier_issues
 #      - duplication
 #      - mass_issues
-#      - 
+#      - location_issues
 # to add:
 #  - %proprietary > say, 75% (alert)
 #  - ING_only bgCAS.  (watch)
@@ -28,7 +28,7 @@
 #  - total % is too large (problems 3 or 4)
 #  - total % is too small (partial; problem 6)
 #  - SysApp crap - more products than chemicals
-#  - TVD is greater than 35000
+#  
 
 
 # Template
@@ -398,12 +398,12 @@ Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate p
 ::Warning_level:info
 ::END::
 
-# Template
+# Lat/Lon outside of state boundaries
 ::START:
-::Title:
-::Flag_id:
-::Date_entered: 
-::Description: 
+::Title:The lat/lon location is not within the boundaries of the reported state
+::Flag_id:d_022
+::Date_entered: 2024/10/20
+::Description: The given lat/lon in the FracFocus data is outside of the reported state boundaries. This error can be caused by typos in the lat/lon or the APINumber; by omission of data in one of those fields; or by intentional misreporting.
 ::Notes:
 ::Reported_to_FF:
 ::Other_notifications:

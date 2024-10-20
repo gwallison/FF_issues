@@ -1,0 +1,3 @@
+**FLAW_STR: d_022
+**DESCRIPTION: This Devon frack uses the White House's front gate as the lat/lon
+
