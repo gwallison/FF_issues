@@ -408,7 +408,20 @@ Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate p
 ::Reported_to_FF:
 ::Other_notifications:
 ::Tags: 
-::Warning_level:info watch alert
+::Warning_level:info
+::END::
+
+# Lat/Lon outside of county boundaries
+::START:
+::Title:The lat/lon location is not within the boundaries of the reported county
+::Flag_id:d_023
+::Date_entered: 2024/10/20
+::Description: The given lat/lon in the FracFocus data is outside of the reported county boundaries. This error can be caused by typos in the lat/lon or the APINumber; by omission of data in one of those fields; or by intentional misreporting. Note that come county names used in FracFocus, particularly offshore areas and some in Alaska, are not represented in the county shape files used to determine this issues.
+::Notes:
+::Reported_to_FF:
+::Other_notifications:
+::Tags: 
+::Warning_level:info
 ::END::
 
 # Template
