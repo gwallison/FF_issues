@@ -134,6 +134,11 @@ class Disclosure_Issues():
         cond = (self.gb.TotalBaseWaterVolume>100000000)
         return self.get_disc_set(cond)
 
+    def dIssue_021(self):
+        """TVD is greater than 35,050 ft. - deepest oil well"""
+        cond = (self.gb.TVD>35050)
+        return self.get_disc_set(cond)
+
 class Record_Issues():
     def __init__(self,df,cas_curated):
         self.df = df

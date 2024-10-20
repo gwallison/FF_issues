@@ -22,12 +22,13 @@
 # to add:
 #  - %proprietary > say, 75% (alert)
 #  - ING_only bgCAS.  (watch)
-#  - location errors (watch)
+#  - location errors (watch), outside of state, county, 
 #  - general watch for chlorine dioxide - often as a solution, so masses include the water mass!
-#  - misuse of TBNWV? positive number but no CO2 or N2
+#  - misuse of TBNWV? positive number but no CO2 or N2 -- FF manual mentions using it for produced water!?!
 #  - total % is too large (problems 3 or 4)
 #  - total % is too small (partial; problem 6)
-#  
+#  - SysApp crap - more products than chemicals
+#  - TVD is greater than 35000
 
 
 # Template
@@ -384,17 +385,17 @@ Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate p
 ::Warning_level:alert
 ::END::
 
-# Template
+# TVD is greater than 35,050 ft. - deepest oil well
 ::START:
-::Title:
-::Flag_id:
-::Date_entered: 
-::Description: 
+::Title:TVD is greater than 35,050 ft.
+::Flag_id:d_021
+::Date_entered: 2024/10/19
+::Description: TVD is supposed to be total vertical depth, and therefore should not be greater than 35050 ft - the current deepest oil well. It is more typically < 15,000 ft.  This flaw may indicate a typo or a misunderstanding (including the horizontal length).
 ::Notes:
 ::Reported_to_FF:
 ::Other_notifications:
 ::Tags: 
-::Warning_level:info watch alert
+::Warning_level:info
 ::END::
 
 # Template

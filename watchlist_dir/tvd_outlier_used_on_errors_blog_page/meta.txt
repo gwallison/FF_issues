@@ -1,0 +1,3 @@
+**FLAW_STR: d_021
+**DESCRIPTION: A TVD greater than 35000 ft is very likely an error.  This one is over 1 billion feet.
+
