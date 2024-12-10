@@ -390,7 +390,7 @@ Furthermore, Open-FF only began archiving downloads in 2018; we can't estimate p
 ::Title:TVD is greater than 35,050 ft.
 ::Flag_id:d_021
 ::Date_entered: 2024/10/19
-::Description: TVD is supposed to be total vertical depth, and therefore should not be greater than 35050 ft - the current deepest oil well. It is more typically < 15,000 ft.  This flaw may indicate a typo or a misunderstanding (including the horizontal length).
+::Description: TVD is supposed to be total vertical depth, and therefore should not be greater than 35050 ft - the current deepest oil well. It is more typically < 15,000 ft.  This flaw may indicate a typo or a misunderstanding (such as including the horizontal length).
 ::Notes:
 ::Reported_to_FF:
 ::Other_notifications:

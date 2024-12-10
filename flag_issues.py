@@ -13,8 +13,8 @@ import FF_issues.process_master_files as pmf
 class Disclosure_Issues():
     def __init__(self,df):
         self.df = df
-        self.gb = df.groupby('DisclosureId',as_index=False)[['APINumber','TotalBaseWaterVolume','has_TBWV',
-                                                             'bgStateName','loc_within_state','loc_within_county'
+        self.gb = df.groupby('DisclosureId',as_index=False)[['APINumber','TotalBaseWaterVolume','has_TBWV','TVD',
+                                                             'bgStateName','loc_within_state','loc_within_county',
                                                              'is_duplicate','MI_inconsistent','ws_perc_total',
                                                              'no_chem_recs','pub_delay_days']].first()
 
