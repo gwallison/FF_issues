@@ -77,7 +77,7 @@
 ::Date_entered: 2024/2/8
 ::Description: This flag indicates that a record is a redundant duplicate of another in the same disclosure. These should be removed with the in_std_filtered flag.
 ::Notes: As of Jan 2024, these detected duplicates add a median mass of over 60,000 lbs to about 17,000 disclosures.  Between Dec 2023 and Feb 2024, Open-FF could not reliably detect duplicate records without resorting to referencing archived data; beware of data sets downloaded during that period. As of March 2024, FracFocus seems to have made the data onsistent again.   As to the cause of these duplicates, responses from FracFocus about this issue pointed the finger at the companies (about 500 of them) as responsible for this problem.  
-::Reported_to_FF:Once in 2019 (blogged about it) and once in Dec 2023.
+::Reported_to_FF:Once in 2019 (blogged about it) and once in Dec 2023. Again in Fall 2024 with cc'ing to agencies.
 ::Other_notifications:
 ::Tags: 
 ::Warning_level: info
