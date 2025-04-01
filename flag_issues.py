@@ -141,12 +141,12 @@ class Disclosure_Issues():
 
     def dIssue_022(self):
         """The lat/lon location is not within the boundaries of the reported state"""
-        cond = (self.gb.loc_within_state==False)
+        cond = (self.gb.loc_within_state=='NO')
         return self.get_disc_set(cond)
     
     def dIssue_023(self):
         """The lat/lon location is not within the boundaries of the reported county"""
-        cond = (self.gb.loc_within_county==False)
+        cond = (self.gb.loc_within_county=='NO')
         return self.get_disc_set(cond)
 class Record_Issues():
     def __init__(self,df,cas_curated):
